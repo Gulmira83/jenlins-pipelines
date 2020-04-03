@@ -15,6 +15,7 @@ node {
 			name: 'ENVIR')]), 
 		])
 
+	    
 		// Pulls a repo from developer
 	stage("Pull Repo"){
 		checkout([$class: 'GitSCM', branches: [[name: '*/FarrukH']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/farrukh90/cool_website.git']]])
@@ -43,5 +44,7 @@ node {
 		//Sends a message to slack
 	stage("Slack"){
 		slackSend color: '#BADA55', message: 'Hello, World!'
+	}
+}
 	}
 }
