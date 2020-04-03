@@ -1,4 +1,3 @@
-  
 node {
     properties([
         // Keeps only last 5
@@ -8,9 +7,7 @@ node {
             upstream('Input'),
             // Execute every minute
             cron('* * * * *')])
-           
-    ])
-
+        ])
 	stage("Stage1"){
 		git 'https://github.com/farrukh90/packer.git'
 }
@@ -28,3 +25,4 @@ node {
 		// some block
 		} 
 	}
+}
