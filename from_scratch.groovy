@@ -14,8 +14,20 @@ node {
 			'stage1.gulmiradesign.com', 
 			'prod1.gulmiradesign.com'], 
 			description: 'Please choose an environment', 
-			name: 'ENVIR')]), 
-		])
+			name: 'ENVIR')]),
+
+
+        // Asks for version
+			choice(choices: [
+				'v0.1', 
+				'v0.2', 
+				'v0.3', 
+				'v0.4', 
+				'v0.5'], 
+			description: 'Which version should we deploy?', 
+			name: 'Version'),
+	        ])
+])
 
 	    
 		// Pulls a repo from developer
