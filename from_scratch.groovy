@@ -25,8 +25,14 @@ node {
 				'v0.4', 
 				'v0.5'], 
 			description: 'Which version should we deploy?', 
-			name: 'Version')
-	        ])
+			name: 'Version'),
+
+			string(defaultValue: 'v1', description: 'please enter version number',
+			name: 'App_VERSION', 
+			trim: true)
+
+
+        ])
 ])
 
 	    
