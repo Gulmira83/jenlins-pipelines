@@ -13,10 +13,10 @@ node {
 		name: 'Version'), 
 			choice(choices: 
 			[
-			'dev.acirrustech.com', 
-			'qa.acirrustech.com', 
-			'stage.acirrustech.com', 
-			'prod.acirrustech.com'], 
+			'dev.gulmiradesign.com', 
+			'qa.gulmiradesign.com', 
+			'stage.gulmiradesign.com', 
+			'prod.gulmiradesign.com'], 
 	description: 'Please provide an environment to build the application', 
 		name: 'Environment')])])
 	stage("Stage2"){
