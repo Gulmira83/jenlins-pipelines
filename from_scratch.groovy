@@ -13,7 +13,7 @@ node  {
 			'stage1.gulmiradesign.com', 
 			'prod1.gulmiradesign.com'], 
 			description: 'Please choose an environment', 
-			name: 'ENVIR')]),
+			name: 'ENVIR'),
 
 
         
@@ -23,18 +23,18 @@ node  {
 				'v0.2', 
 				'v0.3', 
 				'v0.4', 
-				'v0.5'
-				], 
+				'v0.5'], 
 			description: 'Which version should we deploy?', 
-			name: 'Version'),
-
+			name: 'Version')
+		)]
+	)]	
 
 			// Asks for an input
 			string(defaultValue: 'v1', 
 			description: 'Please enter version number', 
 			name: 'APP_VERSION', 
 			trim: true)
-			])
+			
 		])
 
 		// Pulls a repo from developer
