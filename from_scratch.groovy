@@ -26,8 +26,8 @@ node  {
 				'v0.5'], 
 			description: 'Which version should we deploy?', 
 			name: 'Version'),
-		)]
-	)]	
+		
+		
 
 			// Asks for an input
 			string(defaultValue: 'v1', 
@@ -36,6 +36,7 @@ node  {
 			trim: true)
 			
 		])
+	])	
 
 		// Pulls a repo from developer
 	stage("Pull Repo"){
