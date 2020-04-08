@@ -1,13 +1,13 @@
-  
-node  {
+node {
 	properties([
 		// Below line sets "Discard Builds more than 5"
 		buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), 
 		disableConcurrentBuilds(),
-
 		// Below line triggers this job every minute
 		pipelineTriggers([pollSCM('* * * * *')]),
-		parameters([choice(choices: [
+		parameters([
+			// Asks for Environment to Build
+			choice(choices: [
 			'dev1.gulmiradesign.com', 
 			'qa1.gulmiradesign.com', 
 			'stage1.gulmiradesign.com', 
@@ -15,28 +15,25 @@ node  {
 			description: 'Please choose an environment', 
 			name: 'ENVIR'),
 
-
-        
 			// Asks for version
 			choice(choices: [
 				'v0.1', 
 				'v0.2', 
 				'v0.3', 
 				'v0.4', 
-				'v0.5'], 
+				'v0.5'
+				], 
 			description: 'Which version should we deploy?', 
 			name: 'Version'),
-		
-		
+
 
 			// Asks for an input
 			string(defaultValue: 'v1', 
 			description: 'Please enter version number', 
 			name: 'APP_VERSION', 
 			trim: true)
-			
+			])
 		])
-	])	
 
 		// Pulls a repo from developer
 	stage("Pull Repo"){
