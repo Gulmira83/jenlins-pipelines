@@ -39,7 +39,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-                    docker tag artemis:latest 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
+                    docker tag artemis:${Version} 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
                     '''
 				}
 			}
