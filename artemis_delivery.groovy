@@ -42,7 +42,7 @@ node {
 		timestamps {
 			ws{
 				sh '''
-					aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis
+					aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis
 					'''
 				}
 			}
@@ -60,7 +60,7 @@ node {
 			timestamps {
 				ws {
 					sh '''
-						docker tag artemis:${Version} 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version}
+						docker tag artemis:latest 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:latest
 					'''
 					}
 				}
@@ -69,7 +69,7 @@ node {
 			timestamps {
 				ws {
 					sh '''
-						docker push 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version}
+						docker push 713287746880.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 						'''
 				}
 			}
@@ -86,7 +86,7 @@ node {
 			timestamps {
 				ws {
 					sh '''
-						ssh centos@${ENVIR} $(aws ecr get-login --no-include-email --region us-east-1)
+						ssh centos@${ENVIR} $(aws ecr get-login --no-include-email --region us-east-2)
 						'''
 				}
 			}
@@ -114,7 +114,7 @@ node {
 		timestamps {
 			ws {
 				sh '''
-					ssh centos@${ENVIR} docker run -dti -p 5001:5000 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version}
+					ssh centos@${ENVIR} docker run -dti -p 5001:5000 713287746880.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 					'''
 				}
 			}
