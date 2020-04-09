@@ -1,19 +1,13 @@
 node {
-	properties(
-		[parameters([
-            choice(choices: 
-				[
+properties(
+	[parameters(
+		[choice(choices: 
+			[
 				'0.1', 
 				'0.2', 
 				'0.3', 
 				'0.4', 
-				'0.5',
-				
-				
-				
-				
-				
-			], 
+				'0.5'], 
 		description: 'Which version of the app should I deploy? ', 
 		name: 'Version'), 
 	choice(choices: 
@@ -21,9 +15,13 @@ node {
 		'dev1.gulmiradesign.com', 
 		'qa1.gulmiradesign.com', 
 		'stage1.gulmiradesign.com', 
-		'prod1.gulmiradesign.com'], 
+		'prod1.gulmiradesign'], 
 	description: 'Please provide an environment to build the application', 
 	name: 'ENVIR')])])
+
+
+
+
 
 
 
@@ -38,20 +36,20 @@ node {
 			}
 		}
 		stage("Get Credentials"){
-		timestamps {
-			ws{
-				sh '''
-					     aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis
-					'''
+			timestamps {
+				ws{
+					sh '''
+						aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis
+						'''
 				}
 			}
 		}
 		stage("Build Docker Image"){
-		timestamps {
-			ws {
-				sh '''
-					docker build -t artemis:${Version} .
-					'''
+			timestamps {
+				ws {
+					sh '''
+						docker build -t artemis:${Version} .
+						'''
 				}
 			}
 		}
@@ -60,15 +58,15 @@ node {
 				ws {
 					sh '''
 						docker tag artemis:${Version} 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
-					'''
-					}
+						'''
 				}
 			}
+		}
 		stage("Push Image"){
 			timestamps {
 				ws {
 					sh '''
-						docker push 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
+						docker push  679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 						'''
 				}
 			}
@@ -78,19 +76,11 @@ node {
 				ws {
 					echo "Slack"
 					//slackSend color: '#BADA55', message: 'Hello, World!'
-				}
-			}
-		}
-		stage("Authenticate"){
-			timestamps {
-				ws {
-					sh '''
-						ssh centos@${ENVIR} $(aws ecr get-login --no-include-email --region us-east-2)
-						'''
-				}
-			}
-		}
-		stage("Clean Up"){
+            }
+        }
+    
+    }
+    		stage("Clean Up"){
 			timestamps {
 				ws {
 					try {
@@ -108,14 +98,14 @@ node {
 					}
 				}
 			}
-		
-	stage("Run Container"){
+
+    	stage("Run Container"){
 		timestamps {
 			ws {
 				sh '''
 					ssh centos@${ENVIR} docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 					'''
-				}
-			}
-		}
+            }
+        }
+    }
 }
