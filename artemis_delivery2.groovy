@@ -19,7 +19,7 @@ node {
 	choice(choices: 
 	[
 		'dev1.gulmiradesign.com', 
-		'qa1.acirrustech.com', 
+		'qa1.gulmiradesign.com', 
 		'stage1.gulmiradesign.com', 
 		'prod1.gulmiradesign.com'], 
 	description: 'Please provide an environment to build the application', 
