@@ -1,35 +1,25 @@
+
 node {
-properties(
-	[parameters(
-		[choice(choices: 
-			[
+	properties(
+		[parameters(
+			[choice(choices: 
+				[
 				'0.1', 
 				'0.2', 
 				'0.3', 
 				'0.4', 
-				'0.5'], 
+				'0.5',
+				'0.6',
+				'0.7',
+				'0.8',
+				'0.9',
+				'10',
+			], 
 		description: 'Which version of the app should I deploy? ', 
-		name: 'Version'), 
-	choice(choices: 
-	[
-		'dev1.gulmiradesign.com', 
-		'qa1.gulmiradesign.com', 
-		'stage1.gulmiradesign.com', 
-		'prod1.gulmiradesign'], 
-	description: 'Please provide an environment to build the application', 
-	name: 'ENVIR')])])
+		name: 'Version')])])
+		
 
-
-
-
-
-
-
-
-
-
-
-		stage("Stage1"){
+stage("Stage1"){
 			timestamps {
 				ws {
 					checkout([$class: 'GitSCM', branches: [[name: '${Version}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/farrukh90/artemis.git']]])		}
