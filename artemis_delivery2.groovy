@@ -76,10 +76,10 @@ stage("Stage1"){
 					try {
 						sh '''
 							#!/bin/bash
-							IMAGES=$(ssh centos@$dev1.gulmiradesign.com docker ps -aq) 
+							IMAGES=$(ssh centos@dev1.gulmiradesign.com docker ps -aq) 
 							for i in \$IMAGES; do
-								ssh centos@$dev1.gulmiradesign.com docker stop \$i
-								ssh centos@$dev1.gulmiradesign.com docker rm \$i
+								ssh centos@dev1.gulmiradesign.com docker stop \$i
+								ssh centos@dev1.gulmiradesign.com docker rm \$i
 							done 
 							'''
 					} catch(e) {
@@ -93,7 +93,7 @@ stage("Stage1"){
 		timestamps {
 			ws {
 				sh '''
-					ssh centos@$dev1.gulmiradesign.com docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
+					ssh centos@dev1.gulmiradesign.com docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 					'''
             }
         }
