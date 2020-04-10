@@ -93,7 +93,7 @@ stage("Stage1"){
 		timestamps {
 			ws {
 				sh '''
-					ssh centos@dev1.gulmiradesign.com docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
+					ssh centos@dev1.gulmiradesign.com docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:01
 					'''
             }
         }
