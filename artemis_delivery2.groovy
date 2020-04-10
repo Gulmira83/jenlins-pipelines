@@ -93,6 +93,7 @@ stage("Stage1"){
 		timestamps {
 			ws {
 				sh '''
+				    ssh centos@dev1.gulmiradesign.com aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis
 					ssh centos@dev1.gulmiradesign.com docker run -dti -p 5001:5000 679745294409.dkr.ecr.us-east-2.amazonaws.com/artemis:${Version}
 					'''
             }
