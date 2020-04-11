@@ -75,7 +75,7 @@ stage("Stage1"){
             timestamps {
                 ws {
                     sh '''
-                        ssh centos@dev1.gulmiradesign.com $(aws ecr get-login --no-include-email --region usß-east-2)
+                        ssh centos@dev1.gulmiradesign.com $(aws ecr get-login --no-include-email --region us-east-2)
                        '''
                 }
             }
