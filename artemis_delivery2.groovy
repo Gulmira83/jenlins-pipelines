@@ -1,6 +1,11 @@
 
 node {
 	properties(
+		[buildDiscarder(logRotator(artifactDaysToKeepStr: ‘’,
+        artifactNumToKeepStr: ‘’,
+        daysToKeepStr: ‘’,
+        numToKeepStr: ‘5’)),
+        disableConcurrentBuilds(),
 		[parameters(
 			[choice(choices: 
 				[
