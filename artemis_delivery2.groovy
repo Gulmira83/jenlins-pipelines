@@ -6,7 +6,7 @@ node {
         daysToKeepStr: '',
         numToKeepStr: '5')),
         disableConcurrentBuilds(),
-		[parameters(
+		parameters(
 			[choice(choices: 
 				[
 				'0.1', 
